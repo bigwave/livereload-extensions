@@ -1,7 +1,7 @@
 {
   "name": "RemoteLiveReload",
   "description": "RemoteLiveReload browser extensions refreshes a web page on files change.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": {
     "name": "Ian Fraser",
     "email": "ian@bigwave.org.uk"
@@ -18,14 +18,15 @@
     "url": "git://github.com/livereload/livereload-extensions.git"
   },
   "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-compress": "~0.6.0",
-    "grunt-contrib-coffee": "~0.8.2",
-    "grunt-browserify": "~1.3.0",
-    "grunt-crx": "~0.3.3",
     "coffeeify": "~0.6.0",
+    "grunt": "~0.4.2",
+    "grunt-browserify": "~1.3.0",
+    "grunt-bump": "0.0.16",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-coffee": "~0.8.2",
+    "grunt-contrib-compress": "~0.6.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-crx": "~0.3.3",
     "load-grunt-tasks": "~0.3.0"
   }
 }

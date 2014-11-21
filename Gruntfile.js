@@ -4,13 +4,23 @@ module.exports = function(grunt) {
     'use strict';
 
     grunt.initConfig({
+        bump: {
+            options: {
+              files: ['package.json'],
+              updateConfigs: ['pkg'],
+              commit: false,
+              createTag: false,
+              push: false,
+              globalReplace: false
+            }
+        },    
         pkg: grunt.file.readJSON('package.json'),
         options: {
             firefox: {
                 build: 'build/Firefox/content',
                 id: 'remotelivereload@gmail.com',
-                minVersion: '4.0b6pre',
-                maxVersion: '30.0'
+                minVersion: '10.0',
+                maxVersion: '36.0'
             },
             chrome: {
                 build: 'build/Chrome/LiveReload',
@@ -61,6 +71,7 @@ module.exports = function(grunt) {
             firefox: {
                 files: {
                     '<%= options.firefox.build %>/firefox.js': 'src/firefox.coffee',
+                    '<%= options.firefox.build %>/global.js': 'src/global.coffee',
                     '<%= options.firefox.build %>/injected.js': ['build/VERSION',
                                                                  'src/injected.coffee']
                 }
@@ -159,7 +170,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('firefox', ['clean:build', 'copy:common',
                                    'copy:firefox', 'coffee:firefox',
-                                   'browserify:firefox', 'compress:firefox']);
+                                   'compress:firefox']);
     grunt.registerTask('chrome', ['clean:build', 'copy:common', 'copy:chrome',
                                   'coffee:chrome', 'browserify:chrome', 'packageChrome']);
     grunt.registerTask('default', ['clean:build', 'copy', 'coffee', 'browserify', 
