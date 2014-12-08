@@ -19,7 +19,7 @@ module.exports = function(grunt) {
             firefox: {
                 build: 'build/Firefox/content',
                 id: 'remotelivereload@gmail.com',
-                minVersion: '10.0',
+                minVersion: '29.0',
                 maxVersion: '36.0'
             },
             chrome: {

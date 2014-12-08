@@ -1,0 +1,21 @@
+@-moz-document url("chrome://browser/content/browser.xul") {
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+@-moz-document url("chrome://browser/content/browser.xul") {
+  #livereload-button {
+    list-style-image: url("chrome://livereload/skin/IconDisabled.png");
+  }
+
+  #livereload-button[cui-areatype="menu-panel"],
+  toolbarpaletteitem[place="palette"] > #livereload-button {
+    list-style-image: url("chrome://livereload/skin/IconDisabled.png");
+  }
+
+  /* Necessary to mimic the behavior of all other buttons, which are darker when
+    pressed.
+  #aus-view-button:hover:active:not([disabled="true"]):not([cui-areatype="menu-panel"]) {
+    list-style-image: url("chrome://aus-view/skin/icon32-dark.png");
+  }*/
+
+ }
+ 

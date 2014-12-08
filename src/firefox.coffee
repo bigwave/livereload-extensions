@@ -1,5 +1,6 @@
 # Firefox does not use background/injected content separation, so this file
 # serves the purpose of both global-firefox and injected-firefox.
+console.log "firefox start" 
 
 findTabByContentDocument = (doc) ->
   for tab in gBrowser.tabs
@@ -44,12 +45,14 @@ LiveReloadGlobal.initialize()
 ToggleButton =
   initialize: ->
     @toggleButton = document.getElementById('livereload-button')
+    console.log("ToggleButton.initialise!");
     @toggleButton.addEventListener 'command', (event) ->
       currentUrl = window.content.document.location
       #alert currentUrl.hostname
       domain = currentUrl.hostname
       LiveReloadGlobal.toggle(gBrowser.selectedTab, domain)
       ToggleButton.update()
+    console.log("ToggleButton.initialise finished");
 
   update: ->
     status = LiveReloadGlobal.tabStatus(gBrowser.selectedTab)
@@ -57,10 +60,11 @@ ToggleButton =
     @toggleButton.image = "chrome://livereload/skin/#{status.buttonIcon}"
 
 
-window.addEventListener 'load', ->
+    
+windowInit = () ->
   ToggleButton.initialize()
 
-    # alert "Hello from LiveReload!"
+  console.log("windowInit");
     # event.view.gBrowser.selectedTab
 
   ContentScriptInjectionSimulation =
@@ -101,3 +105,6 @@ window.addEventListener 'load', ->
     # tab = event.target
     # console.error "Tab close:"
     # console.error tab
+    
+window.windowInit = windowInit
+console.log "firefox started" 
