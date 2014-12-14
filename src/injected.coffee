@@ -58,8 +58,9 @@ class LiveReloadInjected
 
     isSSL = @window.location.protocol is "https:"
 
+    console.log "Injected LiveReload.js : protocol = " + @window.location.protocol
     if useFallback || isSSL
-      url = "#{scriptURI}?ext=#{@extName}&extver=#{ExtVersion}&host=#{@host}&port=#{@port}"
+      url = "#{scriptURI}?ext=#{@extName}&extver=#{ExtVersion}&host=#{@host}&port=#{@port}&protocol=wss"
       if @_verbose
         console.log "Loading LiveReload.js bundled with the browser extension..."
     else

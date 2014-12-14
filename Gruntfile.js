@@ -45,22 +45,53 @@ module.exports = function(grunt) {
                 dest: 'build/VERSION'
             },
             chrome: {
-                expand: true,
-                flatten: true,
-                src: 'template/Chrome/*',
-                dest: '<%= options.chrome.build %>'
+                files: [
+                  { 
+                    expand: true,
+                    flatten: true,
+                    src:'template/Chrome/*', 
+                    dest:'<%= options.chrome.build %>' 
+                  },
+                  { 
+                    expand: true,
+                    flatten: true,
+                    src:'template/Shared/*', 
+                    dest:'<%= options.chrome.build %>' 
+                  },
+                ]
             },
             firefox: {
-                expand: true,
-                cwd: 'template',
-                src: 'Firefox/**',
-                dest: 'build'
+                files: [
+                  { 
+                    expand: true,
+                    cwd: 'template',
+                    src: 'Firefox/**',
+                    dest: 'build'
+                  },
+                  { 
+                    expand: true,
+                    flatten: true,
+                    cwd: 'template',
+                    src: 'Shared/*',
+                    dest: 'build/Firefox/content'
+                  },
+                ]
             },
             safari: {
-                expand: true,
-                flatten: true,
-                src: 'template/Safari/*',
-                dest: '<%= options.safari.build %>'
+                files: [
+                  { 
+                    expand: true,
+                    flatten: true,
+                    src: 'template/Safari/*',
+                    dest: '<%= options.safari.build %>'
+                  },
+                  { 
+                    expand: true,
+                    flatten: true,
+                    src: 'template/Shared/*',
+                    dest: '<%= options.safari.build %>'
+                  },
+                ]
             }
         },
 

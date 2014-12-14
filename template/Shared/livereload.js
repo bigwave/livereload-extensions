@@ -138,7 +138,8 @@ __connector.Connector = Connector = (function() {
     this.WebSocket = WebSocket;
     this.Timer = Timer;
     this.handlers = handlers;
-    this._uri = "ws://" + this.options.host + ":" + this.options.port + "/livereload";
+    this._uri = this.options.protocol + "://" + this.options.host + ":" + this.options.port + "/livereload";
+    console.log ("Livereload.js Connector URI : " + this._uri);
     this._nextDelay = this.options.mindelay;
     this._connectionDesired = false;
     this.protocol = 0;
@@ -316,6 +317,7 @@ Timer.start = function(timeout, func) {
 var Options;
 __options.Options = Options = (function() {
   function Options() {
+    this.protocol = "ws";
     this.host = null;
     this.port = 35729;
     this.snipver = null;

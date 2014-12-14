@@ -156,20 +156,25 @@ LiveReloadGlobal =
     # probe using web sockets
     callbackCalled = no
 
+    console.log window.content.location.href
+    if window.content.location.href.indexOf("https:") == 0
+      secureProtocol = "s"
+    else
+      secureProtocol = ""
+    theUri = "ws#{secureProtocol}://#{host}:#{@port}/livereload"
+    console.log "Connecting to #{theUri}..."
     failOnTimeout = ->
       console.log "Haven't received a handshake reply in time, disconnecting."
       ws.close()
     timeout = setTimeout(failOnTimeout, 1000)
-
-    console.log "Connecting to ws://#{host}:#{@port}/livereload..."
-    ws = new TheWebSocket("ws://#{host}:#{@port}/livereload")
+    ws = new TheWebSocket(theUri)
     ws.onerror = =>
       console.log "Web socket error."
       callback('cannot-connect') unless callbackCalled
       callbackCalled = yes
     ws.onopen = =>
       console.log "Web socket connected, sending handshake."
-      ws.send JSON.stringify({ command: 'hello', protocols: ['http://livereload.com/protocols/connection-check-1'] })
+      ws.send JSON.stringify({ command: 'hello', protocols: ['http#{secureProtocol}://livereload.com/protocols/connection-check-1'] })
     ws.onclose = ->
       console.log "Web socket disconnected."
       callback('cannot-connect') unless callbackCalled
@@ -194,7 +199,7 @@ LiveReloadGlobal =
         xhr.onerror = (event) =>
           callback('cannot-download') unless callbackCalled
           callbackCalled = yes
-        xhr.open("GET", "http://#{host}:#{@port}/livereload.js", true)
+        xhr.open("GET", "http#{secureProtocol}://#{host}:#{@port}/livereload.js", true)
         xhr.send(null)
 
 
