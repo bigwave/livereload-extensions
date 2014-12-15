@@ -20,13 +20,14 @@ Tested to work in FF >= 10, Chrome >= 20, Opera >= 15.
 
  * If you don't have a key in the keys folder, then the Chrome extension will be pacakaged as a zip file for [uploading to the chrome app store](http://developer.chrome.com/extensions/packaging.html)
 
- * Build ether Firefox (`grunt firefox`), ether Chome/Opera.Next (`grunt chrome`) or both (`grunt`) extensions.
+ * Build either Firefox (`grunt firefox`), ether Chome/Opera.Next (`grunt chrome`) or both (`grunt`) extensions.
 
+ * Increment version number with grunt bump
 
 ## Todo
 
  * [Automate](http://developer.streak.com/2013/01/how-to-build-safari-extension-using.html) generation extension in Safari format ([XAR](http://mackyle.github.io/xar/howtosign.html#safariextz))
- * Unify icons and share using `livereload.js`-script
- * Test in old browser versions (*seems to not work in FF4.0 as promised in manifest*)
+ * Unify icons 
+ * Test in old browser versions 
  * Integrate Opera.Presto into build process
  * Link to appropriate [IE addon](https://github.com/dvdotsenko/livereload_ie_extension)
