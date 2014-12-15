@@ -1,32 +1,39 @@
 {
-  "manifest_version": 2,
-  "name": "<%= pkg.name %>",
-  "version": "<%= pkg.version %>",
-  "background": {
-    "scripts": [
-      "global.js",
-      "global-chrome.js"
-    ]
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["injected.js"]
-    }
-  ],
-  "web_accessible_resources": [
-    "livereload.js"
-  ],
-  "permissions": [
-    "tabs",
-    "<all_urls>"
-  ],
-  "icons": { "48": "icon48.png",
-            "128": "icon128.png" },
-  "browser_action": {
-    "default_title": "Enable LiveReload",
-    "default_icon": {
-      "19": "IconDisabled.png",
-      "38": "IconDisabled@2x.png" },
-  }
+	"manifest_version" : 2,
+	"name" : "<%= pkg.name %>",
+	"version" : "<%= pkg.version %>",
+	"background" : {
+		"scripts" : [
+			"global.js",
+			"global-chrome.js"
+		]
+	},
+
+	"content_scripts" : [{
+			"matches" : ["<all_urls>"],
+			"js" : ["injected.js"]
+		}
+	],
+
+	"web_accessible_resources" : [
+		"livereload.js"
+	],
+
+	"permissions" : [
+		"tabs",
+		"<all_urls>"
+	],
+
+	"icons" : {
+		"48" : "icon48.png",
+		"128" : "icon128.png"
+	},
+	"browser_action" : {
+		"default_title" : "Enable LiveReload",
+		"default_icon" : {
+			"19" : "IconDisabled.png",
+			"38" : "IconDisabled@2x.png"
+		}
+	}
 }
+

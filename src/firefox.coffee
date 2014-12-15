@@ -48,9 +48,9 @@ ToggleButton =
     console.log("ToggleButton.initialise!");
     @toggleButton.addEventListener 'command', (event) ->
       currentUrl = window.content.document.location
-      #alert currentUrl.hostname
       domain = currentUrl.hostname
-      LiveReloadGlobal.toggle(gBrowser.selectedTab, domain)
+      protocol = currentUrl.protocol
+      LiveReloadGlobal.toggle(gBrowser.selectedTab, domain, protocol)
       ToggleButton.update()
     console.log("ToggleButton.initialise finished");
 

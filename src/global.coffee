@@ -115,7 +115,7 @@ LiveReloadGlobal =
     else
       null
 
-  toggle: (tab, host) ->
+  toggle: (tab, host, protocol) ->
     if @isAvailable(tab)
       state = @findState(tab, yes, host)
       if state.enabled
@@ -135,7 +135,7 @@ LiveReloadGlobal =
             else
               state.useFallback = @useFallback
               state.enable(host)
-          host)
+          host, protocol)
 
   tabStatus: (tab) ->
     unless @isAvailable(tab)
@@ -149,15 +149,15 @@ LiveReloadGlobal =
     return yes for tabState in @_tabs when tabState.enabled
     no
 
-  beforeEnablingFirst: (callback, host = no) ->
+  beforeEnablingFirst: (callback, host = no, protocol) ->
     @useFallback = no
     host = host || @host
 
     # probe using web sockets
     callbackCalled = no
 
-    console.log window.content.location.href
-    if window.content.location.href.indexOf("https:") == 0
+    console.log "protocol = " + protocol
+    if protocol.indexOf("https") == 0
       secureProtocol = "s"
     else
       secureProtocol = ""
@@ -174,7 +174,7 @@ LiveReloadGlobal =
       callbackCalled = yes
     ws.onopen = =>
       console.log "Web socket connected, sending handshake."
-      ws.send JSON.stringify({ command: 'hello', protocols: ['http#{secureProtocol}://livereload.com/protocols/connection-check-1'] })
+      ws.send JSON.stringify({ command: "hello", protocols: ["http://livereload.com/protocols/connection-check-1"] })
     ws.onclose = ->
       console.log "Web socket disconnected."
       callback('cannot-connect') unless callbackCalled

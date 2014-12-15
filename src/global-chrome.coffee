@@ -21,9 +21,14 @@ getHost = (url) ->
   domain = matches && matches[1]
   domain.split(':')[0]
 
+getProtocol = (url) ->
+  matches = url.match(/^(https?)\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
+  matches && matches[1]
+
 chrome.browserAction.onClicked.addListener (tab) ->
   host = getHost(tab.url)
-  LiveReloadGlobal.toggle(tab.id, host)
+  protocol = getProtocol(tab.url)
+  LiveReloadGlobal.toggle(tab.id, host, protocol)
   ToggleCommand.update(tab.id)
 
 chrome.tabs.onSelectionChanged.addListener (tabId, selectInfo) ->

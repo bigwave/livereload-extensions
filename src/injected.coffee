@@ -57,16 +57,22 @@ class LiveReloadInjected
       return
 
     isSSL = @window.location.protocol is "https:"
-
-    console.log "Injected LiveReload.js : protocol = " + @window.location.protocol
-    if useFallback || isSSL
-      url = "#{scriptURI}?ext=#{@extName}&extver=#{ExtVersion}&host=#{@host}&port=#{@port}&protocol=wss"
+    if useFallback 
+      if isSSL
+        url = "#{scriptURI}?ext=#{@extName}&extver=#{ExtVersion}&host=#{@host}&port=#{@port}"
+      else
+        url = "#{scriptURI}?ext=#{@extName}&extver=#{ExtVersion}&host=#{@host}&port=#{@port}"
       if @_verbose
         console.log "Loading LiveReload.js bundled with the browser extension..."
     else
-      url = "http://#{@host}:#{@port}/livereload.js?ext=#{@extName}&extver=#{ExtVersion}"
+      if isSSL
+        url = "https://#{@host}:#{@port}/livereload.js?ext=#{@extName}&extver=#{ExtVersion}"
+      else
+        url = "http://#{@host}:#{@port}/livereload.js?ext=#{@extName}&extver=#{ExtVersion}"
       if @_verbose
         console.log "Loading LiveReload.js from #{url.replace(/\?.*$/, '')}..."
+
+    console.log "Injected LiveReload.js : URL = " + url
 
     @hook()
     element = @document.createElement('script')
